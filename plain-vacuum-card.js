@@ -1,6 +1,6 @@
 ((LitElement) => {
     console.info(
-        '%c Plain-Vacuum-Card %c 1.0.1 ',
+        '%c Plain-Vacuum-Card %c 1.0.2 ',
         'color: cyan; background: black; font-weight: bold;',
         'color: darkblue; background: white; font-weight: bold;',
     );
@@ -240,18 +240,17 @@
   text-align: left;
   font-size: 110%;
   padding-left: 10px;
-  border-left: 2px solid var(--primary-color);
 }
 .grid-right {
   text-align: right;
   padding-right: 10px;
-  border-right: 2px solid var(--primary-color);
 }`;
         }
 
         render() {
             return this.stateObj ? html`
             <ha-card class="background" style="${this.config.styles.background}">
+            <div class="header">${Object.values(this.config.state).filter(v => v).map(this.renderAttribute.bind(this))}</div>
               ${this.config.show.name ?
                 html`<div class="title">${this.config.name || this.stateObj.attributes.friendly_name}</div>`
                 : null}
