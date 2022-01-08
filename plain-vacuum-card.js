@@ -248,6 +248,7 @@
         }
 
         render() {
+            console.log(this.config.state);
             return this.stateObj ? html`
             <ha-card class="background" style="${this.config.styles.background}">
             <div class="header">${Object.values(this.config.state).filter(v => v).map(this.renderAttribute.bind(this))}</div>
