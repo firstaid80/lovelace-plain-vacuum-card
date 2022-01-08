@@ -1,6 +1,6 @@
 ((LitElement) => {
     console.info(
-        '%c Plain-Vacuum-Card %c 0.1.3 ',
+        '%c Plain-Vacuum-Card %c 0.1.4 ',
         'color: cyan; background: black; font-weight: bold;',
         'color: darkblue; background: white; font-weight: bold;',
     );
@@ -253,7 +253,7 @@
             //console.log(this.renderAttribute.bind(this));
             return this.stateObj ? html`
             <ha-card class="background" style="${this.config.styles.background}">
-            <div class="header">${this.renderAttribute.bind(this.config.state['battery'])}</div>
+            <div class="header">${config.state['battery'].renderAttribute.bind(this)}</div>
               ${this.config.show.name ?
                 html`<div class="title">${this.config.name || this.stateObj.attributes.friendly_name}</div>`
                 : null}
