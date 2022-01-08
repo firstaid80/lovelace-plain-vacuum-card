@@ -1,2 +1,2 @@
-# vacuum-card-plain
+# plain-vacuum-card
 lovelace plain vacuum card
