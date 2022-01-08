@@ -1,9 +1,15 @@
 ((LitElement) => {
     console.info(
-        '%c Plain-Vacuum-Card %c 1.0.0 ',
+        '%c Plain-Vacuum-Card %c 1.0.1 ',
         'color: cyan; background: black; font-weight: bold;',
         'color: darkblue; background: white; font-weight: bold;',
     );
+
+    const compute = {
+        trueFalse: v => (v === true ? 'Yes' : (v === false ? 'No' : '-')),
+        divide100: v => Math.round(Number(v) / 100),
+        secToHour: v => Math.floor(Number(v) / 60 / 60),
+    }
 
     const state = {
         status: {
@@ -186,11 +192,6 @@
             },
         },
     };
-    const compute = {
-        trueFalse: v => (v === true ? 'Yes' : (v === false ? 'No' : '-')),
-        divide100: v => Math.round(Number(v) / 100),
-        secToHour: v => Math.floor(Number(v) / 60 / 60),
-    }
 
     const html = LitElement.prototype.html;
     const css = LitElement.prototype.css;
