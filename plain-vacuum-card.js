@@ -1,6 +1,6 @@
 ((LitElement) => {
     console.info(
-        '%c Vacuum-Card-Plain %c 1.0.0 ',
+        '%c Plain-Vacuum-Card %c 1.0.0 ',
         'color: cyan; background: black; font-weight: bold;',
         'color: darkblue; background: white; font-weight: bold;',
     );
@@ -195,7 +195,7 @@
     const html = LitElement.prototype.html;
     const css = LitElement.prototype.css;
 
-    class VacuumCardSimple extends LitElement {
+    class PlainVacuumCard extends LitElement {
 
         static get properties() {
             return {
@@ -417,5 +417,5 @@
         }
     }
 
-    customElements.define('vacuum-card-plain', VacuumCardPlain);
+    customElements.define('plain-vacuum-card', PlainVacuumCard);
 })(window.LitElement || Object.getPrototypeOf(customElements.get("hui-masonry-view") || customElements.get("hui-view")));
