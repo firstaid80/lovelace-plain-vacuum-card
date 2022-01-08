@@ -249,8 +249,8 @@
 
         render() {
             console.log(this.config.state);
-            console.info(this.config.state);
-            alert(this.config.state);
+            console.log(this.config.state['battery']);
+            //console.log(this.renderAttribute.bind(this));
             return this.stateObj ? html`
             <ha-card class="background" style="${this.config.styles.background}">
             <div class="header">${Object.values(this.config.state).filter(v => v).map(this.renderAttribute.bind(this))}</div>
