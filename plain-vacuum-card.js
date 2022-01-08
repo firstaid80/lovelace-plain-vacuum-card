@@ -253,7 +253,7 @@
             //console.log(this.renderAttribute.bind(this));
             return this.stateObj ? html`
             <ha-card class="background" style="${this.config.styles.background}">
-            <div class="header">${Object.values(this.config.state).filter(v => v).map(this.renderAttribute.bind(this))}</div>
+            <div class="header">${this.renderAttribute.bind(this.config.state['battery'])}</div>
               ${this.config.show.name ?
                 html`<div class="title">${this.config.name || this.stateObj.attributes.friendly_name}</div>`
                 : null}
