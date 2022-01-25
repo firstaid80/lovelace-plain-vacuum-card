@@ -2,6 +2,8 @@
 
 Really Plain Card for Vacuums in Home Assistan's Lovelace UI
 
+[![GH-release](https://img.shields.io/github/v/release/firstaid80/lovelace-plain-vacuum-card.svg?style=flat-square)](https://github.com/firstaid80/lovelace-plain-vacuum-card/releases)
+[![GH-downloads](https://img.shields.io/github/downloads/firstaid80/lovelace-plain-vacuum-card/total?style=flat-square)](https://github.com/firstaid80/lovelace-plain-vacuum-card/releases)
 [![GH-last-commit](https://img.shields.io/github/last-commit/firstaid80/lovelace-plain-vacuum-card.svg?style=flat-square)](https://github.com/firstaid80/lovelace-plain-vacuum-card/commits/master)
 [![GH-code-size](https://img.shields.io/github/languages/code-size/firstaid80/lovelace-plain-vacuum-card.svg?color=red&style=flat-square)](https://github.com/firstaid80/lovelace-plain-vacuum-card)
 
@@ -53,5 +55,7 @@ Buttons are shown and hidden depending on the status of the vacuum to get a real
 
 This project is not affiliated, associated, authorized, endorsed by, or in any way officially connected with the iRobot Corporation, or any of its subsidiaries or its affiliates. The official iRobot website can be found at  [https://www.irobot.com/](https://www.irobot.com/).
 
+
 ## Acknowledgement
-That's the first card i wrote. I based it on https://github.com/benct/lovelace-xiaomi-vacuum-card and reduced it by everthing i did not need and added what i needed. Thanks [benct](https://github.com/benct) for your great work. 
+
+That's the first card i wrote. I based it on https://github.com/benct/lovelace-xiaomi-vacuum-card and reduced it by everthing i did not need and added what i needed. Thanks [benct](https://github.com/benct) for your great work.
