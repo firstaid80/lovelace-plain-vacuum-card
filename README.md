@@ -54,4 +54,4 @@ Buttons are shown and hidden depending on the status of the vacuum to get a real
 This project is not affiliated, associated, authorized, endorsed by, or in any way officially connected with the iRobot Corporation, or any of its subsidiaries or its affiliates. The official iRobot website can be found at  [https://www.irobot.com/](https://www.irobot.com/).
 
 ## Acknowledgement
-That's the first card i wrote. I based it on https://github.com/benct/lovelace-xiaomi-vacuum-card and reduced it by everthing i did not need. Thanks [benct](https://github.com/benct) for your great work. 
+That's the first card i wrote. I based it on https://github.com/benct/lovelace-xiaomi-vacuum-card and reduced it by everthing i did not need and added what i needed. Thanks [benct](https://github.com/benct) for your great work. 
