@@ -2,10 +2,10 @@
 
 Really Plain Card for Vacuums in Home Assistan's Lovelace UI
 
-[![GH-release](https://img.shields.io/github/v/release/firstaid80/lovelace-plain-vacuum-card.svg?style=flat-square)](https://github.com/firstaid80/lovelace-plain-vacuum-card/releases)
-[![GH-downloads](https://img.shields.io/github/downloads/firstaid80/lovelace-plain-vacuum-card/total?style=flat-square)](https://github.com/firstaid80/lovelace-plain-vacuum-card/releases)
-[![GH-last-commit](https://img.shields.io/github/last-commit/firstaid80/lovelace-plain-vacuum-card.svg?style=flat-square)](https://github.com/firstaid80/lovelace-plain-vacuum-card/commits/master)
-[![GH-code-size](https://img.shields.io/github/languages/code-size/firstaid80/lovelace-plain-vacuum-card.svg?color=red&style=flat-square)](https://github.com/firstaid80/lovelace-plain-vacuum-card)
+[![GH-release](https://img.shields.io/github/v/release/firstaid80/lovelace-plain-vacuum-card.svg)](https://github.com/firstaid80/lovelace-plain-vacuum-card/releases)
+[![GH-downloads](https://img.shields.io/github/downloads/firstaid80/lovelace-plain-vacuum-card/total)](https://github.com/firstaid80/lovelace-plain-vacuum-card/releases)
+[![GH-last-commit](https://img.shields.io/github/last-commit/firstaid80/lovelace-plain-vacuum-card.svg)](https://github.com/firstaid80/lovelace-plain-vacuum-card/commits/master)
+[![GH-code-size](https://img.shields.io/github/languages/code-size/firstaid80/lovelace-plain-vacuum-card.svg?color=red)](https://github.com/firstaid80/lovelace-plain-vacuum-card)
 
 Currently only Roomba supported (if needed, will add more)
 
