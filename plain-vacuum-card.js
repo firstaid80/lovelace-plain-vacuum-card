@@ -1,54 +1,53 @@
 ((LitElement) => {
     console.info(
-        '%c Plain-Vacuum-Card %c 0.1.8 ',
-        'color: cyan; background: red; font-weight: bold;',
-        'color: darkblue; background: white; font-weight: bold;',
+        '%c Plain-Vacuum-Card %c 1.0 ',
+        'color: black; background: Chartreuse; font-weight: bold;',
+        'color: black; background: white; font-weight: bold;',
     );
-
-    const compute = {
-        trueFalse: v => (v === true ? 'Yes' : (v === false ? 'No' : '-')),
-        divide100: v => Math.round(Number(v) / 100),
-        secToHour: v => Math.floor(Number(v) / 60 / 60),
-    }
-
-    const state = {
-        status: {
-            key: 'status',
-            icon: 'mdi:robot-vacuum',
-        },
-        battery: {
-            key: 'battery_level',
-            unit: '%',
-            icon: 'mdi:battery-charging-80',
-        },
-        mode: {
-            key: 'fan_speed',
-            icon: 'mdi:fan',
-        },
-    };
-
-    const attributes = {
-        main_brush: {
-            key: 'main_brush_left',
-            label: 'Main Brush: ',
-            unit: ' h',
-        },
-        side_brush: {
-            key: 'side_brush_left',
-            label: 'Side Brush: ',
-            unit: ' h',
-        },
-        filter: {
-            key: 'filter_left',
-            label: 'Filter: ',
-            unit: ' h',
-        },
-        sensor: {
-            key: 'sensor_dirty_left',
-            label: 'Sensor: ',
-            unit: ' h',
-        },
-    };
+	
+	const translateState = {
+		de: {
+			cleaning: "Reinigen",
+			spot: "Spot Reinigen",
+			paused: "Pausiert",
+			idle: "Untätig",
+			stop: "Angehalten",
+			charging: "Aufladen",
+			"returning home": "Rückkehr zu Dockingstation",
+			returning: "Rückkehr zu Dockingstation",
+			docked: "Angedockt",
+			unknown: "Unbekannt",
+			offline: "Offline",
+			error: "Fehler",
+			bin_full: "Behälter Voll"
+		},
+		en: {
+			cleaning: "Cleaning",
+			spot: "Spot Cleaning",
+			paused: "Paused",
+			idle: "Idle",
+			stop: "Stopped",
+			charging: "Charging",
+			"returning home": "Returning Home",
+			returning: "Returning Home",
+			docked: "Docked",
+			unknown: "Unknown",
+			offline: "Offline",
+			error: "Error",
+			bin_full: "Bin Full"
+		},
+		get: function(state, lang) {
+			if (typeof this[lang] !== 'undefined') {
+				if (typeof this[lang][state] !== 'undefined') {
+					return this[lang][state];
+				} else {
+					return "TRANSLATE " + state;
+				}
+			} else {
+				return "Wrong language";
+			}
+		}
+	}
 
     const buttons = {
         start: {
@@ -66,12 +65,6 @@
             icon: 'mdi:stop',
             service: 'vacuum.stop',
         },
-        spot: {
-            show: false,
-            label: 'Clean Spot',
-            icon: 'mdi:broom',
-            service: 'vacuum.clean_spot',
-        },
         locate: {
             label: 'Locate',
             icon: 'mdi:map-marker',
@@ -81,115 +74,6 @@
             label: 'Return to Base',
             icon: 'mdi:home-map-marker',
             service: 'vacuum.return_to_base',
-        },
-    };
-    const vendors = {
-        xiaomi_mi: {
-            attributes: {
-                main_brush: {key: 'main_brush_hours'},
-                side_brush: {key: 'side_brush_hours'},
-                filter: {key: 'hypa_hours'},
-                sensor: {
-                    key: 'mop_hours',
-                    label: 'Mop: ',
-                },
-            },
-        },
-        valetudo: {
-            state: {
-                status: {key: 'state'},
-            },
-            attributes: {
-                main_brush: {key: 'mainBrush'},
-                side_brush: {key: 'sideBrush'},
-                filter: {key: 'filter'},
-                sensor: {key: 'sensor'},
-            },
-        },
-        roomba: {
-            attributes: {
-                main_brush: false,
-                side_brush: false,
-                filter: false,
-                sensor: false,
-                bin_present: {
-                    key: 'bin_present',
-                    label: 'Bin Present: ',
-                    compute: compute.trueFalse,
-                },
-                bin_full: {
-                    key: 'bin_full',
-                    label: 'Bin Full: ',
-                    compute: compute.trueFalse,
-                },
-            },
-        },
-        robovac: {
-            attributes: false,
-            buttons: {
-                stop: {show: false},
-                spot: {show: true},
-            },
-        },
-        ecovacs: {
-            attributes: false,
-            buttons: {
-                start: {service: 'vacuum.turn_on'},
-                pause: {service: 'vacuum.stop'},
-                stop: {service: 'vacuum.turn_off', show: false},
-                spot: {show: true},
-            },
-        },
-        deebot: {
-            buttons: {
-                start: {service: 'vacuum.turn_on'},
-                pause: {service: 'vacuum.stop'},
-                stop: {service: 'vacuum.turn_off'},
-            },
-            attributes: {
-                main_brush: {
-                    key: 'component_main_brush',
-                    compute: compute.divide100,
-                },
-                side_brush: {
-                    key: 'component_side_brush',
-                    compute: compute.divide100,
-                },
-                filter: {
-                    key: 'component_filter',
-                    compute: compute.divide100,
-                },
-                sensor: false,
-            },
-        },
-        deebot_slim: {
-            buttons: {
-                start: {service: 'vacuum.turn_on'},
-                pause: {service: 'vacuum.stop'},
-                stop: {service: 'vacuum.turn_off'},
-            },
-            attributes: {
-                main_brush: false,
-                side_brush: {key: 'component_side_brush'},
-                filter: {key: 'component_filter'},
-                sensor: false,
-            },
-        },
-        neato: {
-            state: {
-                mode: false,
-            },
-            attributes: {
-                main_brush: false,
-                side_brush: false,
-                filter: false,
-                sensor: false,
-                clean_area: {
-                    key: 'clean_area',
-                    label: 'Cleaned area: ',
-                    unit: ' m2',
-                },
-            },
         },
     };
 
@@ -208,11 +92,7 @@
 
         static get styles() {
             return css`
-.background {
-  background-repeat: no-repeat;
-  background-position: center center;
-  background-size: cover;
-}
+
 .title {
   font-size: 20px;
   padding: 12px 16px 8px;
@@ -221,121 +101,72 @@
   text-overflow: ellipsis;
   overflow: hidden;
 }
+.header {
+  padding: 20px 20px 0 20px;
+  display: flex;
+  justify-content: space-between;  
+  font-weight: 500;
+  font-size: 16px;
+}
+.buttons {
+  padding: 0 20px  20px;
+  display: flex;
+  justify-content: space-between;  
+}
 .flex {
   display: flex;
   align-items: center;
   justify-content: space-evenly;
 }
-.grid {
-  display: grid;
-  grid-template-columns: repeat(2, auto);
-  cursor: pointer;
-}
-.grid-content {
-  display: grid;
-  align-content: space-between;
-  grid-row-gap: 6px;
-}
-.grid-left {
-  text-align: left;
-  font-size: 110%;
-  padding-left: 10px;
-}
-.grid-right {
-  text-align: right;
-  padding-right: 10px;
+.error {
+  color: var(--error-state-color, var(--error-color));
+  font-weight: 500;
+  font-size: 16px;
 }`;
         }
 
         render() {
-            console.log(this.config.state);
-            console.log(this.config.state['battery']);
-            //console.log(this.renderAttribute.bind(this));
             return this.stateObj ? html`
-            <ha-card class="background" style="${this.config.styles.background}">
-            <div class="header">${this.renderAttribute(this.config.state['battery'])}</div>
-              ${this.config.show.name ?
-                html`<div class="title">${this.config.name || this.stateObj.attributes.friendly_name}</div>`
-                : null}
-              ${(this.config.show.state || this.config.show.attributes) ? html`
-              <div class="grid" style="${this.config.styles.content}" @click="${() => this.fireEvent('hass-more-info')}">
-                ${this.config.show.state ? html`
-                <div class="grid-content grid-left">
-                  ${Object.values(this.config.state).filter(v => v).map(this.renderAttribute.bind(this))}
-                </div>` : null}
-                ${this.config.show.attributes ? html`
-                <div class="grid-content grid-right">
-                  ${Object.values(this.config.attributes).filter(v => v).map(this.renderAttribute.bind(this))}
-                </div>` : null}
-              </div>` : null}
-              ${this.config.show.buttons ? html`
-              <div class="flex">
-                ${Object.values(this.config.buttons).filter(v => v).map(this.renderButton.bind(this))}
-              </div>` : null}
+            <ha-card>
+              <div class="header">${this.renderStatus()}</div>
+              <div class="title">${this.stateObj.attributes.friendly_name}</div>
+			  <div class="controls">${this.renderControls()}</div>
             </ha-card>` : html`<ha-card style="padding: 8px 16px">Entity '${this.config.entity}' not available...</ha-card>`;
         }
-
-        renderAttribute(data) {
-            const computeFunc = data.compute || (v => v);
-            const isValidSensorData = data && `${this.config.sensorEntity}_${data.key}` in this._hass.states;
-            const isValidAttribute = data && data.key in this.stateObj.attributes;
-            const isValidEntityData = data && data.key in this.stateObj;
-
-            const value = isValidSensorData
-                ? computeFunc(this._hass.states[`${this.config.sensorEntity}_${data.key}`].state) + (data.unit || '')
-                : isValidAttribute
-                    ? computeFunc(this.stateObj.attributes[data.key]) + (data.unit || '')
-                    : isValidEntityData
-                        ? computeFunc(this.stateObj[data.key]) + (data.unit || '')
-                        : null;
-            const attribute = html`<div>
-                ${data.icon && this.renderIcon(data)}
-                ${(data.label || '') + (value !== null ? value : this._hass.localize('state.default.unavailable'))}
-            </div>`;
-
-            const hasDropdown = `${data.key}_list` in this.stateObj.attributes;
-
-            return (hasDropdown && value !== null)
-                ? this.renderDropdown(attribute, data.key, data.service)
-                : attribute;
-        }
-
-        renderIcon(data) {
-            const icon = (data.key === 'battery_level' && 'battery_icon' in this.stateObj.attributes)
-                ? this.stateObj.attributes.battery_icon
-                : data.icon;
-            return html`<ha-icon icon="${icon}" style="margin-right: 10px; ${this.config.styles.icon}"></ha-icon>`;
-        }
-
-        renderButton(data) {
-            return data && data.show !== false
-                ? html`<ha-icon-button
-                    @click="${() => this.callService(data.service, data.service_data)}"
-                    title="${data.label || ''}"
-                    style="${this.config.styles.icon}">
-                      <ha-icon style="display:flex;" icon="${data.icon}"></ha-icon>
-                    </ha-icon-button>`
-                : null;
-        }
-
-        renderDropdown(attribute, key, service) {
-            const selected = this.stateObj.attributes[key];
-            const list = this.stateObj.attributes[`${key}_list`];
-
-            return html`
-              <paper-menu-button slot="dropdown-trigger" @click="${e => e.stopPropagation()}" style="padding: 0">
-                <paper-button slot="dropdown-trigger">${attribute}</paper-button>
-                <paper-listbox slot="dropdown-content" selected="${list.indexOf(selected)}" @click="${e => this.handleChange(e, key, service)}">
-                  ${list.map(item => html`<paper-item value="${item}" style="text-shadow: none;">${item}</paper-item>`)}
-                </paper-listbox>
-              </paper-menu-button>
-            `;
-        }
-
-        getCardSize() {
-            if (this.config.show.name && this.config.show.buttons) return 4;
-            if (this.config.show.name || this.config.show.buttons) return 3;
-            return 2;
+		
+		renderStatus() {			
+			return html`
+				<div class="state">
+					${translateState.get(this._hass.states[this.config.entity]['state'],"de")}
+				</div>
+				<div class="space"></div>
+				<div class="battery">
+					${this._hass.states[this.config.sensorEntity + '_battery_level']['state']}${this._hass.states[this.config.sensorEntity + '_battery_level']['attributes']['unit_of_measurement']}
+					<ha-icon icon="${this._hass.states[this.config.sensorEntity + '_battery_level']['attributes']['icon']}"></ha-icon>
+				</div>`;
+		}
+		
+		renderControls() {
+			return html` 
+			${ this._hass.states[this.config.entity]['attributes']['bin_full'] ? html` <div class="error"> ${translateState.get('bin_full',"de")}</div>`: null}
+			<div class="buttons"><div class="space"></div>
+            ${ ["docked", "paused", "stop", "idle"].includes(this._hass.states[this.config.entity]['state']) && !this._hass.states[this.config.entity]['attributes']['bin_full'] ? this.renderButton('start') : null}
+            ${ ["cleaning", "returning"].includes(this._hass.states[this.config.entity]['state']) ? this.renderButton('pause') : null}
+            ${ ["cleaning", "paused", "returning"].includes(this._hass.states[this.config.entity]['state']) ? this.renderButton('stop') : null}
+            ${ this.renderButton('locate')}
+            ${ ["cleaning", "paused", "stop", "idle"].includes(this._hass.states[this.config.entity]['state']) ? this.renderButton('return') : null}
+            <div class="space"></div></div>			
+			`;
+        }	
+		
+        renderButton(button) {
+            return 	html`
+					<ha-icon-button @click="${() => this.callService(buttons[button]['service'])}"
+						title="Start"
+						style="var(--paper-item-icon-color)">
+					  <ha-icon style="display:flex;" icon="${buttons[button]['icon']}"></ha-icon>
+					</ha-icon-button>
+			`
         }
 
         shouldUpdate(changedProps) {
@@ -345,28 +176,10 @@
         setConfig(config) {
             if (!config.entity) throw new Error('Please define an entity.');
             if (config.entity.split('.')[0] !== 'vacuum') throw new Error('Please define a vacuum entity.');
-            if (config.vendor && !config.vendor in vendors) throw new Error('Please define a valid vendor.');
-
-            const vendor = vendors[config.vendor] || vendors.roomba;
 
             this.config = {
-                name: config.name,
                 entity: config.entity,
                 sensorEntity: `sensor.${config.entity.split('.')[1]}`,
-                show: {
-                    name: config.name !== false,
-                    state: config.state !== false,
-                    attributes: config.attributes !== false,
-                    buttons: config.buttons !== false,
-                },
-                buttons: this.deepMerge(buttons, vendor.buttons, config.buttons),
-                state: this.deepMerge(state, vendor.state, config.state),
-                attributes: this.deepMerge(attributes, vendor.attributes, config.attributes),
-                styles: {
-                    background: config.image ? `background-image: url('${config.image}'); color: white; text-shadow: 0 0 10px black;` : '',
-                    icon: `color: ${config.image ? 'white' : 'var(--paper-item-icon-color)'};`,
-                    content: `padding: ${config.name !== false ? '8px' : '16px'} 16px ${config.buttons !== false ? '8px' : '16px'};`,
-                },
             };
         }
 
