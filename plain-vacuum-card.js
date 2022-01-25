@@ -1,6 +1,6 @@
 ((LitElement) => {
     console.info(
-        '%c Plain-Vacuum-Card %c 1.0 ',
+        '%c Plain-Vacuum-Card %c 1.1 ',
         'color: black; background: Chartreuse; font-weight: bold;',
         'color: black; background: white; font-weight: bold;',
     );
@@ -122,6 +122,8 @@
   color: var(--error-state-color, var(--error-color));
   font-weight: 500;
   font-size: 16px;
+  display: flex;
+  justify-content: space-around;
 }`;
         }
 
@@ -148,7 +150,7 @@
 		
 		renderControls() {
 			return html` 
-			${ this._hass.states[this.config.entity]['attributes']['bin_full'] ? html` <div class="error"> ${translateState.get('bin_full',"de")}</div>`: null}
+			${ this._hass.states[this.config.entity]['attributes']['bin_full'] ? html` <div class="error"><div> ${translateState.get('bin_full',"de")}</div></div>`: null}
 			<div class="buttons"><div class="space"></div>
             ${ ["docked", "paused", "stop", "idle"].includes(this._hass.states[this.config.entity]['state']) && !this._hass.states[this.config.entity]['attributes']['bin_full'] ? this.renderButton('start') : null}
             ${ ["cleaning", "returning"].includes(this._hass.states[this.config.entity]['state']) ? this.renderButton('pause') : null}
