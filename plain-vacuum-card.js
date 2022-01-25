@@ -1,6 +1,6 @@
 ((LitElement) => {
     console.info(
-        '%c Plain-Vacuum-Card %c 1.1 ',
+        '%c Plain-Vacuum-Card %c 1.0.1 ',
         'color: black; background: Chartreuse; font-weight: bold;',
         'color: black; background: white; font-weight: bold;',
     );
